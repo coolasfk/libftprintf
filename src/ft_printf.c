@@ -3,55 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eprzybyl <eprzybyl@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: Eva <Eva@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:31:48 by eprzybyl          #+#    #+#             */
-/*   Updated: 2023/11/13 17:40:57 by eprzybyl         ###   ########.fr       */
+/*   Updated: 2023/11/13 21:41:29 by Eva              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libftprintf.h"
 
-int	switch_cases(int c, char str)
-{
-	if (c == 's')
-    {
-      handlechar(str);  
-    }
+int switch_cases(char specifier, va_list args) {
 	
-	//my_putchar(c);
-	return (0);
+	int c;
+
+	c = va_arg(args, int);
+	
+    if (specifier == 's')
+        handlechar(args);
+	if (specifier == 'c')
+	my_putchar(c);
+	if (specifier == 'c')
+	my_putchar(c);
+	if (specifier == 'p')
+	handlepointer(c);
+	
+		
+    
+
+    return 0;
 }
 
-int	ft_printf(const char *str, ...)
-{
-	va_list	args;
-	
 
-	if (!str)
-		return (1);
-	
-	va_start(args, str);
-	while (*str)
-	{
-		//printf("current: %c\n", *str);
-		va_arg(args, int);
-		if (*str == '%')
-		{
-			str++;
-			switch_cases(*str, str);
-		}
-		else
-		{
-			my_putchar(*str);
-		}
-        str++;
-	}
-	va_end(args);
-	return (0);
+
+int ft_printf(const char *format, ...) {
+    va_list args;
+    va_start(args, format);
+
+    if (!format)
+        return 1;
+
+    while (*format) {
+        if (*format == '%') {
+            format++;
+            switch_cases(*format, args);
+        } else {
+            my_putchar(*format); 
+        }
+        format++;
+    }
+
+    va_end(args);
+    return 0;
 }
 
 int	main(void)
 {
-	ft_printf("print: %s", "cat");
+	ft_printf("printRt: %p", 'x');
 }

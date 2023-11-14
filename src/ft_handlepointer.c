@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_handlepointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Eva <Eva@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 14:30:11 by eprzybyl          #+#    #+#             */
-/*   Updated: 2023/11/13 21:39:08 by Eva              ###   ########.fr       */
+/*   Created: 2023/11/13 21:37:55 by Eva               #+#    #+#             */
+/*   Updated: 2023/11/13 21:50:29 by Eva              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdarg.h>
-#include <limits.h>
-#include <stdio.h>
+#include "../headers/libftprintf.h"
 
-int ft_printf(const char *, ...);
-void my_putchar(int c);
-void handlechar(va_list args);
-void handlepointer(va_list args);
+void handlepointer(va_list args)
+{
+    void *ptr;
+    
+    
+    ptr = va_arg(args, void*);
+
+    my_putchar(ptr);
+}
