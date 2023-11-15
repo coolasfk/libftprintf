@@ -6,7 +6,7 @@
 /*   By: eprzybyl <eprzybyl@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:31:48 by eprzybyl          #+#    #+#             */
-/*   Updated: 2023/11/15 23:09:14 by eprzybyl         ###   ########.fr       */
+/*   Updated: 2023/11/15 23:34:33 by eprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	switch_cases(char specifier, va_list args, int *len)
 			return (-1);
 	}
 	if (specifier == 'u')
-		handleuint(args, len);
+	{
+		if (handleuint(args, len) == -1)
+			return (-1);
+	}
 	if (specifier == 'x' || specifier == 'X')
 		handlehex(args, len, specifier);
 	if (specifier == '%')

@@ -6,7 +6,7 @@
 /*   By: eprzybyl <eprzybyl@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 21:37:55 by Eva               #+#    #+#             */
-/*   Updated: 2023/11/15 23:17:54 by eprzybyl         ###   ########.fr       */
+/*   Updated: 2023/11/15 23:21:52 by eprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ int	handlepointer(va_list args, int *len)
 	(void)len;
 	ptr = va_arg(args, void *);
 	ptr_dec = (uintptr_t)ptr;
-	my_putchar('0', len);
-	my_putchar('x', len);
-	if(decimal_to_hex_p(ptr_dec, len) == -1)
-	return (-1);
+	if (my_putchar('0', len) == -1)
+		return (-1);
+	if (my_putchar('x', len) == -1)
+		return (-1);
+	if (decimal_to_hex_p(ptr_dec, len) == -1)
+		return (-1);
 	// printf("pointer: %lu\n", ptr_dec);
 	return (*len);
 }
