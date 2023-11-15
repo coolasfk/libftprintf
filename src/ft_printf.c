@@ -6,7 +6,7 @@
 /*   By: eprzybyl <eprzybyl@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:31:48 by eprzybyl          #+#    #+#             */
-/*   Updated: 2023/11/15 16:07:17 by eprzybyl         ###   ########.fr       */
+/*   Updated: 2023/11/15 20:26:15 by eprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	switch_cases(char specifier, va_list args, int *len)
 	if (specifier == 'i' || specifier == 'd')
 		handlenum(args, len);
 	if (specifier == 'u')
-		handlepointer(args, len);
+		handleuint(args, len);
 	if (specifier == 'x' || specifier == 'X')
-		handlepointer(args, len);
+		handlehex(args, len, specifier);
 	if (specifier == '%')
 		my_putchar('%', len);
 	return (*len);
@@ -65,8 +65,12 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (len);
 }
-
+/*
 int	main(void)
 {
-	ft_printf("printRt: %p", "cat");
+	//char *cat = "cat";
+	ft_printf("printRt: %X", 6348278);
+	//printf("\n");
+	//printf("printRt: %p", cat);
 }
+*/
