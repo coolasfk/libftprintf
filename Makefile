@@ -6,7 +6,7 @@
 #    By: eprzybyl <eprzybyl@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 13:43:01 by eprzybyl          #+#    #+#              #
-#    Updated: 2023/11/13 14:29:39 by eprzybyl         ###   ########.fr        #
+#    Updated: 2023/11/15 21:00:27 by eprzybyl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,15 +16,15 @@ CC = gcc
 
 FLAGS = -Wall -Werror -Wextra
 
-HEADER = headers/libftprintf.h
-
-SRC := $(wildcard *.c)
+HEADER = headers/ft_printf.h
 
 RM = rm -f
 
 AR = ar rcs
 
-OBJ = $(SRC:.c=.o)
+SRC := $(wildcard src/*.c)
+
+OBJ = $(SRC:src/%.c=obj/%.o)
 
 .PHONY: all clean fclean re
 
@@ -33,12 +33,13 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 
-%.o: %.c $(HEADER)
+obj/%.o: src/%.c $(HEADER)
+	@mkdir -p obj
 	$(CC) $(FLAGS) -c $< -o $@
 
-clean: $(RM) $(OBJ)
+clean:
+	$(RM) -r obj $(NAME)
 
 fclean: clean
-	$(RM) $(NAME)
 
 re: fclean all

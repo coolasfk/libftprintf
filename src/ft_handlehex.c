@@ -6,11 +6,11 @@
 /*   By: eprzybyl <eprzybyl@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 19:57:03 by eprzybyl          #+#    #+#             */
-/*   Updated: 2023/11/15 20:23:21 by eprzybyl         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:15:15 by eprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/libftprintf.h"
+#include "../headers/ft_printf.h"
 
 int	decimal_to_hex(unsigned int num, int *len, char *set)
 {
@@ -19,6 +19,10 @@ int	decimal_to_hex(unsigned int num, int *len, char *set)
 	int		i;
 
 	i = 0;
+	if (num == 0)
+	{
+		temp[i++] = '0';
+	}
 	while (num > 0)
 	{
 		remainder = num % 16;
@@ -26,15 +30,17 @@ int	decimal_to_hex(unsigned int num, int *len, char *set)
 		num /= 16;
 	}
 	temp[i] = '\0';
-	while (i > 0)
-		my_putchar(temp[--i], len);
+	i -= 1;
+	while (i >= 0)
+		my_putchar(temp[i--], len);
 	return (*len);
 }
 int	handlehex(va_list args, int *len, char specifier)
 {
 	unsigned int	num;
 	char			*set;
-set = NULL;
+
+	set = NULL;
 	num = va_arg(args, unsigned int);
 	if (specifier == 'x')
 	{
