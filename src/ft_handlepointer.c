@@ -6,21 +6,17 @@
 /*   By: eprzybyl <eprzybyl@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 21:37:55 by Eva               #+#    #+#             */
-/*   Updated: 2023/11/15 23:21:52 by eprzybyl         ###   ########.fr       */
+/*   Updated: 2023/11/16 09:25:50 by eprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-int	decimal_to_hex_p(uintptr_t ptr_dec, int *len)
+int	decimal_to_hex_p(uintptr_t ptr_dec, int *len, char *set, int i)
 {
 	char	temp[20];
-	char	*set;
-	int		i;
 	int		remainder;
 
-	set = "0123456789abcdef";
-	i = 0;
 	if (ptr_dec == 0)
 	{
 		temp[i++] = '0';
@@ -47,7 +43,11 @@ int	handlepointer(va_list args, int *len)
 {
 	void		*ptr;
 	uintptr_t	ptr_dec;
+	char		*set;
+	int			i;
 
+	set = "0123456789abcdef";
+	i = 0;
 	(void)len;
 	ptr = va_arg(args, void *);
 	ptr_dec = (uintptr_t)ptr;
@@ -55,8 +55,7 @@ int	handlepointer(va_list args, int *len)
 		return (-1);
 	if (my_putchar('x', len) == -1)
 		return (-1);
-	if (decimal_to_hex_p(ptr_dec, len) == -1)
+	if (decimal_to_hex_p(ptr_dec, len, set, i) == -1)
 		return (-1);
-	// printf("pointer: %lu\n", ptr_dec);
 	return (*len);
 }

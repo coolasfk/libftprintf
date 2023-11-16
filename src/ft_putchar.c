@@ -6,7 +6,7 @@
 /*   By: eprzybyl <eprzybyl@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:59:53 by eprzybyl          #+#    #+#             */
-/*   Updated: 2023/11/15 21:40:56 by eprzybyl         ###   ########.fr       */
+/*   Updated: 2023/11/16 09:22:24 by eprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	my_putchar(int c, int *len)
 	{
 		return (-1);
 	}
-
 	(*len)++;
 	return (*len);
 }
